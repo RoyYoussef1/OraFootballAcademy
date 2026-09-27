@@ -17,7 +17,6 @@
     />
     <style>
       :root {
-        --ink: #050e20;
         --navy: #0b1f47;
         --navy-2: #122a5c;
         --navy-glass: rgba(18, 42, 92, 0.55);
@@ -43,8 +42,8 @@
       }
       body {
         margin: 0;
-        background: var(--ink);
-        color: #fff;
+        background: #fff;
+        color: var(--dark-text);
         font-family:
           "Manrope",
           system-ui,
@@ -79,12 +78,13 @@
         margin: 0;
       }
       h1 {
-        font-size: clamp(2.8rem, 8.4vw, 4.8rem);
+        font-size: clamp(2.4rem, 8.4vw, 4.8rem);
         text-transform: uppercase;
       }
       h2 {
-        font-size: clamp(2.3rem, 5vw, 3.9rem);
+        font-size: clamp(2.2rem, 5vw, 3.9rem);
         text-transform: uppercase;
+        line-height: 1.1;
       }
       h3 {
         font-size: 1.5rem;
@@ -107,8 +107,20 @@
         background: var(--paper);
         color: var(--dark-text);
       }
-      .light p {
+      .white {
+        background: #fff;
+        color: var(--dark-text);
+      }
+      .light p,
+      .white p {
         color: #43526e;
+      }
+      .navy {
+        background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+        color: #fff;
+      }
+      .navy .lead {
+        color: #c3d0e6;
       }
       .lead {
         font-size: 1.07rem;
@@ -129,16 +141,17 @@
         padding: 0 0 10px;
         background: linear-gradient(
           to bottom,
-          rgba(5, 14, 32, 0.85),
-          rgba(5, 14, 32, 0)
+          rgba(255, 255, 255, 0.92),
+          rgba(255, 255, 255, 0)
         );
       }
       header.nav.stuck {
         padding: 0;
         padding-bottom: 10px;
-        background: rgba(7, 18, 40, 0.86);
+        background: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(14px);
-        border-bottom: 1px solid rgba(212, 160, 42, 0.22);
+        border-bottom: 1px solid rgba(11, 31, 71, 0.08);
+        box-shadow: 0 10px 30px rgba(11, 31, 71, 0.08);
       }
       .nav-in {
         display: flex;
@@ -155,7 +168,7 @@
         height: 120px;
         width: auto;
         transition: height 0.45s var(--ease);
-        filter: drop-shadow(0 8px 22px rgba(0, 0, 0, 0.5));
+        filter: drop-shadow(0 8px 18px rgba(11, 31, 71, 0.18));
       }
       header.nav.stuck .brand img {
         height: 96px;
@@ -184,7 +197,7 @@
       .nav-links a {
         font-size: 0.9rem;
         font-weight: 600;
-        color: #d4dcec;
+        color: #43526e;
         position: relative;
         padding: 4px 0;
       }
@@ -199,7 +212,7 @@
         transition: width 0.3s var(--ease);
       }
       .nav-links a:hover {
-        color: #fff;
+        color: var(--navy);
       }
       .nav-links a:hover::after {
         width: 100%;
@@ -234,14 +247,22 @@
         box-shadow: 0 16px 38px rgba(212, 160, 42, 0.45);
       }
       .btn-ghost {
-        background: rgba(255, 255, 255, 0.07);
-        color: #fff;
-        border: 1px solid rgba(255, 255, 255, 0.22);
-        backdrop-filter: blur(6px);
+        background: #fff;
+        color: var(--navy);
+        border: 1px solid rgba(11, 31, 71, 0.2);
       }
       .btn-ghost:hover {
-        background: rgba(255, 255, 255, 0.14);
+        border-color: var(--navy);
         transform: translateY(-2px);
+      }
+      .navy .btn-ghost {
+        background: rgba(255, 255, 255, 0.08);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.25);
+      }
+      .navy .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.16);
+        border-color: rgba(255, 255, 255, 0.4);
       }
       .btn-dark {
         background: var(--navy);
@@ -261,9 +282,9 @@
         border-radius: 14px;
         display: grid;
         place-items: center;
-        color: #d4dcec;
-        background: rgba(255, 255, 255, 0.07);
-        border: 1px solid rgba(255, 255, 255, 0.18);
+        color: var(--navy);
+        background: #fff;
+        border: 1px solid rgba(11, 31, 71, 0.14);
         transition: 0.3s var(--ease);
       }
       .nav-socials a:hover {
@@ -274,30 +295,18 @@
       }
       .hero {
         position: relative;
-        min-height: 100svh;
+        min-height: 100dvh;
         display: flex;
         align-items: center;
-        padding: 140px 0 70px;
+        padding: 160px 0 70px;
         overflow: hidden;
+        color: var(--navy);
         background: radial-gradient(
           120% 90% at 78% 18%,
-          #16336b 0%,
-          #0b1f47 42%,
-          #050e20 100%
+          #ffffff 0%,
+          #f4f7fc 45%,
+          #e3eaf5 100%
         );
-      }
-      .arcs {
-        position: absolute;
-        right: -16vw;
-        top: 50%;
-        transform: translateY(-50%);
-        width: min(1180px, 105vw);
-        opacity: 0.85;
-        pointer-events: none;
-      }
-      .arcs .spin {
-        transform-origin: 50% 50%;
-        animation: spin 90s linear infinite;
       }
       @keyframes spin {
         to {
@@ -318,7 +327,7 @@
         gap: 10px;
         font-size: 0.82rem;
         font-weight: 600;
-        color: var(--gold-soft);
+        color: var(--gold-deep);
         background: rgba(212, 160, 42, 0.12);
         border: 1px solid rgba(212, 160, 42, 0.32);
         padding: 8px 16px;
@@ -351,17 +360,12 @@
       }
       h1 .gold {
         color: transparent;
-        background: linear-gradient(
-          100deg,
-          var(--gold-soft),
-          var(--gold) 40%,
-          var(--gold-deep)
-        );
+        background: linear-gradient(100deg, var(--gold), var(--gold-deep));
         -webkit-background-clip: text;
         background-clip: text;
       }
       .hero p.lead {
-        color: #c6d2e6;
+        color: #43526e;
         margin-top: 24px;
         font-size: 1.1rem;
         max-width: 44ch;
@@ -389,7 +393,7 @@
         line-height: 1;
       }
       .hero-meta small {
-        color: #9fb0cc;
+        color: var(--slate);
         font-size: 0.78rem;
         letter-spacing: 0.06em;
       }
@@ -402,8 +406,7 @@
         max-height: 74vh;
         margin-inline: auto;
         width: 100%;
-        box-shadow: 0 40px 90px rgba(0, 0, 0, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.14);
+        box-shadow: 0 40px 90px rgba(11, 31, 71, 0.25);
       }
       .pillar video {
         width: 100%;
@@ -455,13 +458,18 @@
         border-radius: 52px;
         border: 1px solid rgba(212, 160, 42, 0.3);
       }
+      @media (max-width: 620px) {
+        .pillar-wrap::before {
+          inset: -14px;
+        }
+      }
       .scroll-hint {
         position: absolute;
         left: 50%;
         bottom: 26px;
         transform: translateX(-50%);
         z-index: 3;
-        color: #93a6c4;
+        color: var(--slate);
         font-size: 0.72rem;
         letter-spacing: 0.2em;
         display: flex;
@@ -531,7 +539,7 @@
 
       .head {
         max-width: 760px;
-        margin-bottom: clamp(38px, 5vw, 62px);
+        margin-bottom: clamp(32px, 5vw, 62px);
       }
       .head .tag {
         font-size: 0.8rem;
@@ -540,15 +548,21 @@
         color: var(--gold-deep);
         margin-bottom: 14px;
       }
-      .dark .head .tag {
+      .navy .head .tag {
         color: var(--gold);
+      }
+      .head h2 {
+        color: var(--navy);
+      }
+      .navy .head h2 {
+        color: #fff;
       }
       .head h2 em {
         font-style: normal;
         color: var(--gold-deep);
       }
-      .dark {
-        background: var(--ink);
+      .navy .head h2 em {
+        color: var(--gold-soft);
       }
 
       .way {
@@ -586,7 +600,8 @@
         border-radius: 16px;
         display: grid;
         place-items: center;
-        background: linear-gradient(140deg, var(--navy), var(--navy-2));
+        /* background: linear-gradient(140deg, var(--navy), var(--navy-2)); */
+        border: 1px solid;
         color: var(--gold);
       }
       .pill h3 {
@@ -658,49 +673,33 @@
         border-radius: var(--r-lg);
         padding: 30px 26px 28px;
         overflow: hidden;
-        background: linear-gradient(
-          170deg,
-          rgba(255, 255, 255, 0.085),
-          rgba(255, 255, 255, 0.028)
-        );
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        backdrop-filter: blur(6px);
+        background: #fff;
+        border: 1px solid var(--navy);
+        box-shadow: 0 14px 34px rgba(14, 28, 54, 0.06);
         transition:
           transform 0.35s var(--ease),
           border-color 0.35s,
-          background 0.35s;
-      }
-      .card::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        height: 3px;
-        background: linear-gradient(90deg, var(--gold), transparent);
+          box-shadow 0.35s;
       }
       .card:hover {
         transform: translateY(-8px);
-        border-color: rgba(212, 160, 42, 0.5);
-        background: linear-gradient(
-          170deg,
-          rgba(212, 160, 42, 0.14),
-          rgba(255, 255, 255, 0.03)
-        );
+        border-color: var(--navy);
+        box-shadow: 0 22px 48px rgba(14, 28, 54, 0.12);
       }
       .card .age {
         font-family: "Barlow Condensed";
         font-size: 2.9rem;
-        color: var(--gold);
+        color: var(--gold-deep);
         line-height: 1;
       }
       .card h3 {
         margin: 6px 0 10px;
         text-transform: uppercase;
         font-size: 1.32rem;
+        color: var(--navy);
       }
       .card p {
-        color: #b6c5de;
+        color: #43526e;
         font-size: 0.93rem;
       }
       .card ul {
@@ -712,7 +711,7 @@
       }
       .card li {
         font-size: 0.87rem;
-        color: #d3deef;
+        color: #33425e;
         display: flex;
         gap: 9px;
         align-items: flex-start;
@@ -720,7 +719,7 @@
       .card li svg {
         flex: none;
         margin-top: 3px;
-        color: var(--gold);
+        color: var(--gold-deep);
       }
       .card .ic {
         width: 56px;
@@ -728,7 +727,7 @@
         border-radius: 18px;
         display: grid;
         place-items: center;
-        background: rgba(212, 160, 42, 0.14);
+        background: linear-gradient(140deg, var(--navy), var(--navy-2));
         color: var(--gold);
         margin-bottom: 18px;
         border: 1px solid rgba(212, 160, 42, 0.28);
@@ -803,25 +802,22 @@
         overflow: hidden;
         position: relative;
         border: 2px solid rgba(212, 160, 42, 0.5);
-        box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 18px 40px rgba(11, 31, 71, 0.18);
       }
       .why .ph img {
         width: 100%;
         height: 100%;
         object-fit: cover;
-        transition: transform 0.6s var(--ease);
-      }
-      .why figure:hover .ph img {
-        transform: scale(1.08);
       }
       .why h3 {
-        font-size: 1.24rem;
+        font-size: 1.25rem;
         text-transform: uppercase;
-        color: #fff;
+        color: var(--navy);
         margin-bottom: 12px;
+        line-height: 24px;
       }
       .why p {
-        color: #a9b9d4;
+        color: #43526e;
         font-size: 0.92rem;
         max-width: 30ch;
         margin-inline: auto;
@@ -835,15 +831,16 @@
       .venue {
         border-radius: var(--r-lg);
         overflow: hidden;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: #fff;
+        border: 1px solid var(--paper-2);
+        box-shadow: 0 14px 34px rgba(14, 28, 54, 0.06);
         transition:
           transform 0.35s var(--ease),
           box-shadow 0.35s;
       }
       .venue:hover {
         transform: translateY(-6px);
-        box-shadow: 0 26px 60px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 26px 60px rgba(14, 28, 54, 0.14);
       }
       .venue .img {
         position: relative;
@@ -877,11 +874,12 @@
       }
       .venue h3 {
         text-transform: uppercase;
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        color: var(--navy);
       }
       .venue .addr {
-        color: #a9b9d4;
-        font-size: 0.92rem;
+        color: var(--slate);
+        font-size: 0.9rem;
         margin: 6px 0 16px;
       }
       .chips {
@@ -893,9 +891,9 @@
       .chips i {
         font-style: normal;
         font-size: 0.76rem;
-        color: #cfdbef;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: #33425e;
+        background: var(--paper);
+        border: 1px solid var(--paper-2);
         padding: 6px 12px;
         border-radius: 999px;
       }
@@ -903,9 +901,9 @@
         display: inline-flex;
         align-items: center;
         gap: 9px;
-        color: var(--gold);
+        color: var(--gold-deep);
         font-weight: 700;
-        font-size: 0.9rem;
+        font-size: 0.82rem;
       }
       .maplink svg {
         transition: transform 0.3s var(--ease);
@@ -1201,9 +1199,10 @@
       }
 
       footer {
-        background: #030913;
+        background: var(--paper);
+        color: var(--dark-text);
         padding: 60px 0 34px;
-        border-top: 1px solid rgba(212, 160, 42, 0.18);
+        border-top: 1px solid var(--paper-2);
       }
       .fgrid {
         display: grid;
@@ -1217,31 +1216,36 @@
         letter-spacing: 0.08em;
         font-size: 1.1rem;
         margin: 0 0 16px;
-        color: var(--gold);
+        color: var(--navy);
       }
       footer a.fl {
         display: block;
-        color: #93a6c4;
+        color: #43526e;
         font-size: 0.92rem;
         padding: 5px 0;
         transition: color 0.25s;
       }
       footer a.fl:hover {
-        color: #fff;
+        color: var(--navy);
       }
       footer p {
-        color: #7c8eac;
+        color: var(--slate);
         font-size: 0.9rem;
+      }
+      footer .socials a {
+        color: var(--navy);
+        background: #fff;
+        border-color: var(--paper-2);
       }
       .fbot {
         margin-top: 42px;
         padding-top: 22px;
-        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        border-top: 1px solid var(--paper-2);
         display: flex;
         justify-content: space-between;
         gap: 16px;
         flex-wrap: wrap;
-        color: #64758f;
+        color: var(--slate);
         font-size: 0.82rem;
       }
 
@@ -1311,6 +1315,55 @@
           padding: 0 16px;
         }
 
+        .q .a p {
+          font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+          padding: 12px;
+          font-size: 0.9rem;
+        }
+
+        .info a.row {
+          gap: 12px;
+          padding: 16px;
+        }
+
+        .info b {
+          font-size: 14px;
+          line-height: 19px;
+        }
+
+        .hero p.lead {
+          font-size: 16px;
+        }
+
+        .hero-meta b {
+          font-size: 22px;
+        }
+
+        .head .tag {
+          letter-spacing: 0;
+        }
+
+        .lead {
+          font-size: 16px;
+        }
+
+        .pill h3 {
+          font-size: 20px;
+        }
+
+        .way-media .float b {
+          font-size: 32px;
+        }
+
+        .pill p {
+          font-size: 14px;
+        }
+
         .pill {
           padding: 16px;
         }
@@ -1321,15 +1374,36 @@
         }
 
         .card {
-          padding: 24px 20px 22px;
+          padding: 20px;
         }
         .card .ic {
-          width: 52px;
-          height: 52px;
+          width: 48px;
+          height: 48px;
         }
 
         .card .age {
           margin-bottom: 12px;
+          font-size: 32px;
+        }
+
+        .card h3, .fact b, .step h3, .why h3 {
+          font-size: 20px;
+        }
+
+        .card p, .fact p, .step p, .why p, .venue .addr, footer a.fl {
+          font-size: 14px;
+        }
+
+        .cta p, footer p {
+          font-size: 16px;
+        }
+
+        footer {
+          padding-top: 48px;
+        }
+
+        .venue h3 {
+          font-size: 21px;
         }
 
         .fact {
@@ -1346,7 +1420,7 @@
 
         .q button {
           padding: 16px 4px;
-          font-size: 1.15rem;
+          font-size: 18px;
         }
       }
 
@@ -1383,6 +1457,7 @@
         }
         .path {
           grid-template-columns: 1fr 1fr;
+          gap: 16px;
         }
         .step:nth-child(2n)::after {
           display: none;
@@ -1417,7 +1492,7 @@
           grid-template-columns: 1fr;
         }
         .hero {
-          padding-top: 118px;
+          padding-top: 112px;
           min-height: auto;
         }
         .pillar {
@@ -1493,6 +1568,9 @@
           flex-direction: column;
           align-items: flex-start;
         }
+        .why h3 {
+          margin-bottom: 8px;
+        }
       }
       @media (prefers-reduced-motion: reduce) {
         * {
@@ -1567,69 +1645,20 @@
 
     <main id="top">
       <section class="hero">
-        <svg class="arcs" viewBox="0 0 900 900" fill="none" aria-hidden="true">
-          <g class="spin">
-            <circle
-              cx="450"
-              cy="450"
-              r="300"
-              stroke="rgba(212,160,42,.20)"
-              stroke-width="1"
-            />
-            <circle
-              cx="450"
-              cy="450"
-              r="360"
-              stroke="rgba(212,160,42,.14)"
-              stroke-width="1"
-            />
-            <circle
-              cx="450"
-              cy="450"
-              r="424"
-              stroke="rgba(212,160,42,.10)"
-              stroke-width="1"
-            />
-          </g>
-          <path
-            d="M450 60 A390 390 0 0 1 450 840"
-            stroke="url(#g1)"
-            stroke-width="54"
-            stroke-linecap="round"
-          />
-          <path
-            d="M450 128 A322 322 0 0 1 450 772"
-            stroke="rgba(212,160,42,.35)"
-            stroke-width="2"
-          />
-          <path
-            d="M450 170 A280 280 0 0 1 450 730"
-            stroke="rgba(212,160,42,.22)"
-            stroke-width="2"
-          />
-          <defs>
-            <linearGradient
-              id="g1"
-              x1="450"
-              y1="60"
-              x2="450"
-              y2="840"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#F0CE76" stop-opacity=".9" />
-              <stop offset=".5" stop-color="#D4A02A" stop-opacity=".55" />
-              <stop offset="1" stop-color="#A8761A" stop-opacity=".15" />
-            </linearGradient>
-          </defs>
-        </svg>
-
         <div class="shell hero-grid">
           <div>
             <h1>
-              <span class="l rv d1"><i>Elite football coaching inspired by Europe's leading academies</i></span>
+              <span class="l rv d1"
+                ><i
+                  >Elite football coaching inspired by Europe's leading
+                  academies</i
+                ></span
+              >
             </h1>
             <p class="lead rv d3">
-              Professional coaching for boys and girls aged 4–18 in Dubai. Structured, player-first training inspired by Europe's leading development systems.
+              Professional coaching for boys and girls aged 4–18 in Dubai.
+              Structured, player-first training inspired by Europe's leading
+              development systems.
             </p>
             <div class="hero-cta rv d4">
               <a class="btn btn-gold" href="#contact"
@@ -1691,8 +1720,15 @@
               <h2>A football home, <em>not a drop-off</em></h2>
             </div>
             <p class="lead rv d1">
-              ORA Football Academy was founded with a simple mission: to give young players across the UAE access to professional football training inspired by some of Europe's most successful player development systems.<br>
-              <br>Our focus goes beyond winning matches. We help players build technical ability, confidence, discipline, teamwork, and a lifelong passion for the game — through structured coaching, consistent guidance, and an environment that encourages both personal and athletic growth.
+              ORA Football Academy was founded with a simple mission: to give
+              young players across the UAE access to professional football
+              training inspired by some of Europe's most successful player
+              development systems.<br />
+              <br />Our focus goes beyond winning matches. We help players build
+              technical ability, confidence, discipline, teamwork, and a
+              lifelong passion for the game — through structured coaching,
+              consistent guidance, and an environment that encourages both
+              personal and athletic growth.
             </p>
             <div class="pillars">
               <div class="pill rv d1">
@@ -1781,20 +1817,12 @@
                 loading="lazy"
               />
             </div>
-            <img
-              class="badge"
-              src="assets/crest.png"
-              alt=""
-              aria-hidden="true"
-            />
-            <div class="float">
-              <b>Est. 2026</b><small>Dubai</small>
-            </div>
+            <div class="float"><b>Est. 2026</b><small>Dubai</small></div>
           </div>
         </div>
       </section>
 
-      <section class="sec dark" id="programmes">
+      <section class="sec white" id="programmes">
         <div class="shell">
           <div class="head rv">
             <p class="tag">Programmes</p>
@@ -1820,7 +1848,8 @@
               <div class="age">4–7</div>
               <h3>Grassroots</h3>
               <p>
-                Coordination, confidence, and a love for the game through fun, active sessions.
+                Coordination, confidence, and a love for the game through fun,
+                active sessions.
               </p>
             </article>
             <article class="card rv d2">
@@ -1842,7 +1871,8 @@
               <div class="age">8–12</div>
               <h3>Development</h3>
               <p>
-                Technical skills, game understanding, and team play in a structured setting.
+                Technical skills, game understanding, and team play in a
+                structured setting.
               </p>
             </article>
             <article class="card rv d3">
@@ -1863,7 +1893,8 @@
               <div class="age">13–18</div>
               <h3>Performance</h3>
               <p>
-                Advanced development and competitive preparation for aspiring players.
+                Advanced development and competitive preparation for aspiring
+                players.
               </p>
             </article>
             <article class="card rv d4">
@@ -1888,25 +1919,15 @@
               <div class="age">Camps</div>
               <h3>Holiday camps</h3>
               <p>
-                Multi-day camps that keep players active, learning, and improving all year.
+                Multi-day camps that keep players active, learning, and
+                improving all year.
               </p>
             </article>
           </div>
         </div>
       </section>
 
-      <section
-        class="sec"
-        id="season"
-        style="
-          background: linear-gradient(
-            180deg,
-            #050e20 0%,
-            #0b1f47 60%,
-            #050e20 100%
-          );
-        "
-      >
+      <section class="sec navy" id="season">
         <div class="shell season">
           <div class="season-media rv">
             <img
@@ -1924,12 +1945,12 @@
           </div>
           <div>
             <div class="head rv d1" style="margin-bottom: 24px">
-              <p class="tag" style="color: var(--gold)">Season one</p>
+              <p class="tag">Season one</p>
               <h2>
                 September 2026,
-                <em style="color: var(--gold-soft)">and we are on</em>
+                <em>and we are on</em>
               </h2>
-              <p class="lead" style="color: #afc0da">
+              <p class="lead">
                 The academy runs on the UAE school calendar - September through
                 June - with camps filling the breaks.
               </p>
@@ -1974,9 +1995,7 @@
                 ></span>
                 <div>
                   <b>Two venues across Dubai</b>
-                  <p>
-                    Bloom World Academy and Dubai School Al Khawaneej.
-                  </p>
+                  <p>Bloom World Academy and Dubai School Al Khawaneej.</p>
                 </div>
               </div>
               <div class="fact rv d3">
@@ -2054,7 +2073,7 @@
         </div>
       </section>
 
-      <section class="sec dark" id="why">
+      <section class="sec white" id="why">
         <div class="shell">
           <div class="head rv" style="max-width: 640px">
             <p class="tag">Why Choose ORA Football Academy</p>
@@ -2071,7 +2090,8 @@
               </div>
               <h3>Professional European Training Methodology</h3>
               <p>
-                Structured sessions focused on technical, tactical, physical, and mental development. 
+                Structured sessions focused on technical, tactical, physical,
+                and mental development.
               </p>
             </figure>
             <figure class="rv d2">
@@ -2084,7 +2104,8 @@
               </div>
               <h3>Qualified coaches</h3>
               <p>
-                Our coaching team follows internationally recognized coaching standards and continuous development programs. 
+                Our coaching team follows internationally recognized coaching
+                standards and continuous development programs.
               </p>
             </figure>
             <figure class="rv d3">
@@ -2097,7 +2118,7 @@
               </div>
               <h3>Premium Training Venues</h3>
               <p>
-                 Carefully selected football facilities  with quality pitches.
+                Carefully selected football facilities with quality pitches.
               </p>
             </figure>
             <figure class="rv d4">
@@ -2110,23 +2131,20 @@
               </div>
               <h3>Competitive Opportunities</h3>
               <p>
-                Access to leagues, tournaments, and competitive match environments as players progress.
+                Access to leagues, tournaments, and competitive match
+                environments as players progress.
               </p>
             </figure>
           </div>
         </div>
       </section>
 
-      <section
-        class="sec"
-        id="venues"
-        style="background: linear-gradient(180deg, #050e20, #0b1f47)"
-      >
+      <section class="sec light" id="venues">
         <div class="shell">
           <div class="head rv">
-            <p class="tag" style="color: var(--gold)">Where we train</p>
+            <p class="tag">Where we train</p>
             <h2>Two venues across Dubai</h2>
-            <p class="lead" style="color: #afc0da">
+            <p class="lead">
               With more locations planned as the academy grows.
             </p>
           </div>
@@ -2234,7 +2252,7 @@
         </div>
       </section>
 
-      <section class="sec light" id="faq">
+      <section class="sec white" id="faq">
         <div class="shell">
           <div class="head rv">
             <p class="tag">Questions</p>
@@ -2259,7 +2277,8 @@
               </button>
               <div class="a">
                 <p>
-                  Boys and girls from 4 to 18, grouped by age for the right level of challenge.
+                  Boys and girls from 4 to 18, grouped by age for the right
+                  level of challenge.
                 </p>
               </div>
             </div>
@@ -2281,7 +2300,8 @@
               </button>
               <div class="a">
                 <p>
-                  September 2026, following the UAE school calendar (September–June).
+                  September 2026, following the UAE school calendar
+                  (September–June).
                 </p>
               </div>
             </div>
@@ -2303,7 +2323,8 @@
               </button>
               <div class="a">
                 <p>
-                  Click Register on any page and complete the short online form. We'll confirm and arrange payment.
+                  Click Register on any page and complete the short online form.
+                  We'll confirm and arrange payment.
                 </p>
               </div>
             </div>
@@ -2347,7 +2368,8 @@
               </button>
               <div class="a">
                 <p>
-                  Yes — a trial session is available so players can experience training first.
+                  Yes — a trial session is available so players can experience
+                  training first.
                 </p>
               </div>
             </div>
@@ -2369,7 +2391,8 @@
               </button>
               <div class="a">
                 <p>
-                  Yes — sibling and early-bird discounts are available and applied at registration.
+                  Yes — sibling and early-bird discounts are available and
+                  applied at registration.
                 </p>
               </div>
             </div>
@@ -2377,17 +2400,13 @@
         </div>
       </section>
 
-      <section
-        class="sec"
-        id="contact"
-        style="background: linear-gradient(180deg, #0b1f47, #050e20)"
-      >
+      <section class="sec navy" id="contact">
         <div class="shell contact">
           <div>
             <div class="head rv" style="margin-bottom: 28px">
-              <p class="tag" style="color: var(--gold)">Register</p>
+              <p class="tag">Register</p>
               <h2>Let's get your child on the pitch</h2>
-              <p class="lead" style="color: #afc0da">
+              <p class="lead">
                 Tell us a little about your player and we will come back with
                 session times at your preferred venue.
               </p>
@@ -2537,7 +2556,8 @@
               <span
                 ><small>OFFICE</small
                 ><b
-                  >Office 1002, Business Central Towers, Tower B, Dubai Media City, Dubai, UAE</b
+                  >Office 1002, Business Central Towers, Tower B, Dubai Media
+                  City, Dubai, UAE</b
                 ></span
               >
             </a>
